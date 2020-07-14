@@ -1,0 +1,22 @@
+{
+  "name": "devlog-backend",
+  "version": "1.0.0",
+  "description": "Backend de Blog Social",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ernestojv/devlog-backend.git"
+  },
+  "author": "ernestoj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ernestojv/devlog-backend/issues"
+  },
+  "homepage": "https://github.com/ernestojv/devlog-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
