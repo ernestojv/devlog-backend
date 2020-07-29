@@ -1,4 +1,5 @@
 const express = require('express');
+const secure = require('./secure');
 const response = require('../../../network/response');
 const Controller = require('./index');
 const router = express.Router();
@@ -27,7 +28,14 @@ router.post('/', async (req, res) => {
     } catch (error) {
         response.error(req, res, error.message, 500);
     }
-
+});
+router.put('/', secure('update'), async (req, res) => {
+    try {
+        const user = await Controller.upsert(req.body);
+        response.sucess(req, res, user, 201);
+    } catch (error) {
+        response.error(req, res, error.message, 500);
+    }
 });
 router.delete('/:id', async (req, res) => {
     try {
