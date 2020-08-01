@@ -2,12 +2,12 @@ const { nanoid } = require('nanoid');
 const auth = require('../auth');
 
 const TABLE = 'user';
-module.exports = (ijectedStore) => {
-    if (!ijectedStore) ijectedStore = require('../../../store/dummy');
+module.exports = (injectedStore) => {
+    if (!injectedStore) injectedStore = require('../../../store/dummy');
     return {
-        list: () => ijectedStore.list(TABLE),
-        get: id => ijectedStore.get(TABLE, id),
-        upsert:  async (body) => {
+        list: () => injectedStore.list(TABLE),
+        get: id => injectedStore.get(TABLE, id),
+        upsert: async (body) => {
             const user = {
                 name: body.name,
                 username: body.username,
@@ -21,8 +21,20 @@ module.exports = (ijectedStore) => {
                     password: body.password,
                 });
             }
-            ijectedStore.upsert(TABLE, user);
+            injectedStore.upsert(TABLE, user);
         },
-        remove: id => ijectedStore.remove(TABLE, id),
+        remove: id => injectedStore.remove(TABLE, id),
+        follow: (from, to) => {
+            return injectedStore.upsert(TABLE + '_follow', {
+                user_from: from,
+                user_to: to,
+            });
+        },
+        following: async (user) => {
+            const join = {};
+            join[TABLE] = 'user_to';
+            const query = { user_from: user };
+            return await injectedStore.query(TABLE + '_follow', query, join);
+        }
     }
 };

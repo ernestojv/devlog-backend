@@ -44,6 +44,21 @@ router.delete('/:id', async (req, res) => {
     } catch (error) {
         response.error(req, res, error.message, 500);
     }
-
 });
+router.post('/follow/:id', secure('follow'), async (req, res) => {
+    try {
+        const result = await Controller.follow(req.user.id, req.params.id);
+        response.sucess(req, res, result, 201);
+    } catch (error) {
+        response.error(req, res, error.message, 500);
+    }
+});
+router.get('/:id/following', async (req, res, next) => {
+    try {
+        const result = await Controller.following(req.params.id);
+        return response.sucess(req, res, result, 200);
+    } catch (error) {
+        response.error(req, res, error.message, 500);
+    }
+})
 module.exports = router;

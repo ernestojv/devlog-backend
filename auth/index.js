@@ -12,18 +12,22 @@ const check = {
     own: (req, owner) => {
         const decoded = decodeHeader(req);
         console.log(decoded);
-        if(decoded.id !== owner){
+        if (decoded.id !== owner) {
             throw error('without permission', 401);
         }
     },
+    logged: (req) => {
+        const decoded = decodeHeader(req);
+    },
+
 }
 const getToken = (auth) => {
     if (!auth) {
-        throw new Error('No Token');
+        throw error('No Token', 401);
     }
     if (auth.indexOf('Bearer ') === -1) {
-        throw new Error('Invalid Token');
-    }   
+        throw error('Invalid Token', 401);
+    }
     let token = auth.replace('Bearer ', '');
     return token;
 }
