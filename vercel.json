@@ -1,7 +1,7 @@
 {
     "version": 2,
     "env": {
-        "MYSQL_HOST": "remotemysql.com",
+        "MYSQL_HOST": "remotemysql.com"
     },
     "builds": [
         {
