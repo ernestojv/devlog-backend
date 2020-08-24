@@ -1,0 +1,13 @@
+{
+  "apps": [{
+    "name": "principal",
+    "script": "./api/index.js"
+  },
+  {
+    "name": "post",
+    "script": "./post/index.js"
+  },{
+    "name": "mysql",
+    "script": "./mysql/index.js"
+  }]
+}
