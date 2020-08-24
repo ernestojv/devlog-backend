@@ -13,7 +13,7 @@ $ npm run start
 ## Tech stack
  - Express
  - Node.js
- - MongoDB
+ - MySql
 ## Features pendientes
  - Test
  - Caché
